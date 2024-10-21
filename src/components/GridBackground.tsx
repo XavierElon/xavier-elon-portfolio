@@ -37,7 +37,7 @@ export function GridBackground() {
         <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2]"></div>
 
         {/* Color streaks overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-teal-900/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-teal-900/40"></div>
 
         {/* Radial gradient for the faded look */}
         <div className="absolute inset-0 bg-[#090c10] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -46,19 +46,19 @@ export function GridBackground() {
         <BackgroundBeams />
 
         {/* Tracing Beam Wrapper */}
-        <TracingBeam className="px-6">
-          {/* Content Container */}
-          <div className="antialiased pt-4 relative">
-            {/* Navbar */}
-            <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+        {/* <TracingBeam className="px-6"> */}
+        {/* Content Container */}
+        <div className="antialiased pt-4 relative">
+          {/* Navbar */}
+          <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
 
-            {/* Content */}
-            <div className="relative z-10 flex items-center justify-center">
-              <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
-              <CursorGradient />
-            </div>
+          {/* Content */}
+          <div className="relative z-10 flex items-center justify-center">
+            <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+            <CursorGradient />
           </div>
-        </TracingBeam>
+        </div>
+        {/* </TracingBeam> */}
       </div>
     </div>
   )
