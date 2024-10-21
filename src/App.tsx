@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Layout from './components/layout'
 import Navbar from './components/navbar'
 import { GridBackground } from './components/GridBackground'
+import CursorGradient from './components/CursorGradient'
 
 export enum TabKey {
   Home = 'Home',
@@ -28,6 +29,8 @@ function App() {
 
   return (
     <main className="bg-[#f7f2f2]">
+      {/* <CursorGradient /> */}
+
       {/* <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} /> */}
       <div className="w-full h-full">
         <GridBackground />

@@ -25,3 +25,13 @@
   transition: visibility 500ms ease 0s;
   will-change: transform;
 }
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.2);
+  }
+}

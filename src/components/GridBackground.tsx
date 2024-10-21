@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Layout from './layout'
 import Navbar from './navbar'
-import BeamAnimation from './BeamAnimation'
 import { BackgroundBeams } from './aceternity/BackgroundBeams'
-import { Vortex } from './aceternity/Vortex'
+import { TracingBeam } from './aceternity/TracingBeam'
+import CursorGradient from './CursorGradient'
 
 export enum TabKey {
   Home = 'Home',
@@ -22,34 +22,44 @@ export function GridBackground() {
     Contact: 3
   }
 
-  const baseX = 520
-  const baseW = 221.5
+  const baseX = 10
+  const baseW = 200
 
   const x = baseX + tabOffsets[tab] * baseW
   const w = baseW
+
   return (
-    <div className="relative h-full w-full">
-      {/* Base black background with grid */}
-      <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2]"></div>
+    // Remove 'h-full' to allow the container to be as tall as its content
+    <div className="relative w-full">
+      <div className="relative">
+        {/* Background Layers */}
+        {/* Base black background with grid */}
+        <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2]"></div>
 
-      {/* Color streaks overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-teal-900/20"></div>
+        {/* Color streaks overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-teal-900/20"></div>
 
-      {/* Radial gradient for the faded look */}
-      <div className="absolute inset-0 bg-[#090c10] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        {/* Radial gradient for the faded look */}
+        <div className="absolute inset-0 bg-[#090c10] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
 
-      {/* Beam Animation */}
-      <BackgroundBeams />
+        {/* Beam Animation */}
+        <BackgroundBeams />
 
-      {/* Navbar */}
-      <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+        {/* Tracing Beam Wrapper */}
+        <TracingBeam className="px-6">
+          {/* Content Container */}
+          <div className="antialiased pt-4 relative">
+            {/* Navbar */}
+            <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
 
-      {/* Content */}
-      {/* <Vortex backgroundColor="black" rangeY={800} particleCount={500} baseHue={120} className="flex items-center flex-col justify-center px-2 md:px-10  py-4 w-full h-full"> */}
-      <div className="relative z-10 flex h-full items-center justify-center">
-        <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+            {/* Content */}
+            <div className="relative z-10 flex items-center justify-center">
+              <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+              <CursorGradient />
+            </div>
+          </div>
+        </TracingBeam>
       </div>
-      {/* </Vortex> */}
     </div>
   )
 }

@@ -4,23 +4,39 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '../../lib/utils'
 
 export const BackgroundBeams = React.memo(({ className }: { className?: string }) => {
-  // Grid parameters
-  const gridSize = 50
-  const svgWidth = 800
-  const svgHeight = 600
+  const paths = [
+    'M0 100 L800 100',
+    'M0 200 L800 200',
+    'M0 300 L800 300',
+    'M0 400 L800 400',
+    'M0 500 L800 500',
 
-  // Generate grid-aligned paths
-  const paths: any[] = []
+    // Diagonal lines
+    'M0 0 L800 600',
+    'M0 100 L700 800',
+    'M100 0 L800 700',
 
-  // Horizontal lines
-  for (let y = 0; y <= svgHeight; y += gridSize) {
-    paths.push(`M0 ${y} L${svgWidth} ${y}`)
-  }
+    // Curved lines
+    'M0 500 Q400 0 800 500',
+    'M0 0 Q400 600 800 0',
 
-  // Vertical lines
-  for (let x = 0; x <= svgWidth; x += gridSize) {
-    paths.push(`M${x} 0 L${x} ${svgHeight}`)
-  }
+    // Sine wave-like paths
+    'M0 300 C200 100 600 500 800 300',
+    'M0 200 C200 400 600 0 800 200',
+
+    // Vertical lines
+    'M100 0 L100 600',
+    'M200 0 L200 600',
+    'M300 0 L300 600',
+    'M400 0 L400 600',
+    'M500 0 L500 600',
+    'M600 0 L600 600',
+    'M700 0 L700 600',
+
+    // Gentle curves
+    'M0 400 C200 350 600 450 800 400',
+    'M0 200 C200 250 600 150 800 200'
+  ]
 
   // State to hold the beams
   const [beams, setBeams] = useState<Beam[]>([])
@@ -82,7 +98,7 @@ export const BackgroundBeams = React.memo(({ className }: { className?: string }
 
   return (
     <div className={cn('absolute h-full w-full inset-0 [mask-size:40px] [mask-repeat:no-repeat] flex items-center justify-center', className)}>
-      <svg className="z-0 h-full w-full pointer-events-none absolute" width="100%" height="100%" viewBox={`0 0 ${svgWidth} ${svgHeight}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg className="z-0 h-full w-full pointer-events-none absolute" width="100%" height="100%" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
           {/* Define gradients */}
           {beams.map((beam) => (
