@@ -1,9 +1,11 @@
+// GridBackground.tsx
+
 import React, { useState } from 'react'
 import Layout from './layout'
 import Navbar from './navbar'
 import { BackgroundBeams } from './aceternity/BackgroundBeams'
-import { TracingBeam } from './aceternity/TracingBeam'
 import CursorGradient from './CursorGradient'
+import { AuroraBackground } from './aceternity/AuroraBackground'
 
 export enum TabKey {
   Home = 'Home',
@@ -29,36 +31,30 @@ export function GridBackground() {
   const w = baseW
 
   return (
-    // Remove 'h-full' to allow the container to be as tall as its content
-    <div className="relative w-full">
-      <div className="relative">
-        {/* Background Layers */}
-        {/* Base black background with grid */}
-        <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2]"></div>
+    <div className="relative w-full min-h-screen">
+      {' '}
+      {/* Changed h-screen to min-h-screen */}
+      {/* GridBackground Layers */}
+      {/* Base grid background */}
+      <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2] z-0"></div>
+      {/* Color streaks overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-teal-900/40 z-10"></div>
+      {/* Radial gradient for the faded look */}
+      <div className="absolute inset-0 bg-[#090c10] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] z-10"></div>
+      {/* Beam Animation */}
+      <BackgroundBeams />
+      {/* AuroraBackground Overlay */}
+      <AuroraBackground className="absolute inset-0 z-20" showRadialGradient={true} />
+      {/* Main Content */}
+      <div className="relative z-30 flex flex-col items-center justify-center">
+        {/* Navbar */}
+        <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
 
-        {/* Color streaks overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-teal-900/40"></div>
-
-        {/* Radial gradient for the faded look */}
-        <div className="absolute inset-0 bg-[#090c10] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-
-        {/* Beam Animation */}
-        <BackgroundBeams />
-
-        {/* Tracing Beam Wrapper */}
-        {/* <TracingBeam className="px-6"> */}
-        {/* Content Container */}
-        <div className="antialiased pt-4 relative">
-          {/* Navbar */}
-          <Navbar tab={tab} setTab={setTab} left={x} sliderWidth={w} />
-
-          {/* Content */}
-          <div className="relative z-10 flex items-center justify-center">
-            <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
-            <CursorGradient />
-          </div>
+        {/* Content */}
+        <div className="relative z-40 flex items-center justify-center">
+          <Layout tab={tab} setTab={setTab} left={x} sliderWidth={w} />
+          <CursorGradient />
         </div>
-        {/* </TracingBeam> */}
       </div>
     </div>
   )
