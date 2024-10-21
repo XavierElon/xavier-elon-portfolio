@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-const CursorGradient = () => {
+interface CursorGradientProps {
+  radius?: number // Radius in pixels for the gradient circle
+  dotSize?: number // Diameter in pixels for the central dot
+}
+
+const CursorGradient: React.FC<CursorGradientProps> = ({
+  radius = 100, // Default radius
+  dotSize = 10 // Default dot size
+}) => {
   const [position, setPosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
@@ -15,7 +23,7 @@ const CursorGradient = () => {
 
   return (
     <div
-      className="fixed pointer-events-none"
+      className="fixed pointer-events-none rounded-full"
       style={{
         left: `${position.x}px`,
         top: `${position.y}px`,
@@ -26,8 +34,19 @@ const CursorGradient = () => {
         filter: 'blur(60px)',
         zIndex: -1,
         animation: 'breathe 8s linear infinite'
-      }}
-    />
+      }}>
+      <div
+        className="absolute top-1/2 left-1/2"
+        style={{
+          width: `${dotSize}px`,
+          height: `${dotSize}px`,
+          backgroundColor: '#ffffff',
+          borderRadius: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 10000
+        }}
+      />
+    </div>
   )
 }
 
