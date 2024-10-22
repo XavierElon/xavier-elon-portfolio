@@ -36,7 +36,7 @@ export function GridBackground() {
       {/* Changed h-screen to min-h-screen */}
       {/* GridBackground Layers */}
       {/* Base grid background */}
-      <div className="absolute inset-0 bg-[#090c10] bg-[length:50px_50px] bg-grid-white/[0.2] z-0"></div>
+      <div className="absolute inset-0 bg-[#090c10] bg-[length:100px_100px] bg-grid-white/[0.05] z-0"></div>
       {/* Color streaks overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-teal-900/40 z-10"></div>
       {/* Radial gradient for the faded look */}

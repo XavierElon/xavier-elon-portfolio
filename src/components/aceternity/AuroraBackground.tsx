@@ -1,5 +1,3 @@
-// AuroraBackground.tsx
-
 'use client'
 import { cn } from '../../lib/utils'
 import React, { ReactNode } from 'react'
@@ -21,16 +19,18 @@ export const AuroraBackground = ({ className, children, showRadialGradient = tru
             [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
             [background-image:var(--white-gradient),var(--aurora)]
             dark:[background-image:var(--dark-gradient),var(--aurora)]
-            [background-size:300%,200%]
-            [background-position:50% 50%,50% 50%]
+            [background-size:200%,150%] /* Reduced from 300%,200% */
+            [background-position:20% 20%,20% 20%]
             filter blur-[10px]
             after:content-[""] after:absolute after:inset-0 after:[background-image:var(--white-gradient),var(--aurora)] 
             after:dark:[background-image:var(--dark-gradient),var(--aurora)]
-            after:[background-size:200%,100%] 
+            after:[background-size:150%,100%] /* Adjusted for consistency */
             after:animate-aurora after:[background-attachment:fixed]
             pointer-events-none
-            absolute -inset-[10px] opacity-50 will-change-transform
-            animate-aurora`,
+            absolute -inset-[10px] opacity-20
+            will-change-transform
+            animate-aurora
+          `,
             showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
           )}></div>
       </div>
